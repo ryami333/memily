@@ -1,0 +1,9 @@
+{
+  "name": "memily",
+  "version": "1.0.0",
+  "description": "Javascript function memoization library.",
+  "main": "dist/main.js",
+  "repository": "git@github.com:ryami333/memily.git",
+  "author": "Mitch Ryan <mitch.ryan@outlook.co.nz>",
+  "license": "UNLICENSED"
+}
