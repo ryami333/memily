@@ -5,5 +5,14 @@
   "main": "dist/main.js",
   "repository": "git@github.com:ryami333/memily.git",
   "author": "Mitch Ryan <mitch.ryan@outlook.co.nz>",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.37",
+    "@babel/core": "^7.0.0-beta.37",
+    "@babel/preset-es2015": "^7.0.0-beta.37",
+    "@babel/preset-flow": "^7.0.0-beta.37"
+  },
+  "scripts": {
+  	"build": "babel src/memily.js --out-dir dist"
+  }
 }
