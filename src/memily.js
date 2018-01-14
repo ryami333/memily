@@ -12,15 +12,12 @@ type StoreCache = Map<Function, Store>;
 // Global store of all the memoization caches, so that they can all be flushed at once without re-initing all the memoized functions.
 const storeCache: StoreCache = new Map();
 
-export default function memily<Fn: Function>(
-    fn: Fn,
-    { cacheKey, maxAge }: Options = {},
-): Fn {
+export default function mem(fn: Function, { cacheKey, maxAge }: Options = {}) {
     if (!storeCache.has(fn)) {
         storeCache.set(fn, new Map());
     }
 
-    function memoizedFn(args: any, ...rest: Array<any>): $Call<Fn> {
+    function memoizedFn(args: any, ...rest: Array<any>) {
         if (rest.length > 0) {
             throw new Error('Cannot memoize functions with multiple arguments');
         }
