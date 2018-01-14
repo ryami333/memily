@@ -1,11 +1,11 @@
 // @flow
 
 import consecutive from 'consecutive';
-import mem, { flush } from './mem';
+import memily, { flush } from './memily';
 
-describe('mem', () => {
+describe('memily', () => {
     it('succesfully caches results of function calls', async () => {
-        const memoized = mem(consecutive());
+        const memoized = memily(consecutive());
 
         expect(memoized()).toEqual(0);
         expect(memoized()).toEqual(0);
@@ -13,7 +13,7 @@ describe('mem', () => {
 
     it('only calls the the root function on the first call', () => {
         const fn = jest.fn();
-        const memoized = mem(fn, { cacheKey: () => 'key', maxAge: 200 });
+        const memoized = memily(fn, { cacheKey: () => 'key', maxAge: 200 });
 
         expect(fn.mock.calls.length).toEqual(0);
         memoized();
@@ -23,7 +23,7 @@ describe('mem', () => {
     });
 
     it('expires results after maxAge', async () => {
-        const memoized = mem(consecutive(), {
+        const memoized = memily(consecutive(), {
             maxAge: 100,
         });
 
@@ -33,7 +33,7 @@ describe('mem', () => {
     });
 
     it('caches forever if maxAge not passed', async () => {
-        const memoized = mem(consecutive());
+        const memoized = memily(consecutive());
 
         expect(memoized()).toEqual(0);
         await new Promise(resolve => setTimeout(resolve, 200));
@@ -41,7 +41,7 @@ describe('mem', () => {
     });
 
     it('Caches by the argument passed to the memoized function', async () => {
-        const memoized = mem(consecutive());
+        const memoized = memily(consecutive());
 
         expect(memoized('foo')).toEqual(0);
         expect(memoized('foo')).toEqual(0);
@@ -50,7 +50,7 @@ describe('mem', () => {
     });
 
     it('Caches by the argument passed to the memoized function using the cacheKey callback', async () => {
-        const memoized = mem(consecutive(), {
+        const memoized = memily(consecutive(), {
             cacheKey: (args: Object) => (args.cacheByThis: string),
         });
 
@@ -61,12 +61,12 @@ describe('mem', () => {
     });
 
     it('throws an error when you try to invoke a memoized function with mulitple arguments', async () => {
-        const memoized = mem(jest.fn());
+        const memoized = memily(jest.fn());
         expect(() => memoized('foo', 'bar')).toThrow();
     });
 
     it('flushes the cache when "flush" invoked', async () => {
-        const memoized = mem(consecutive());
+        const memoized = memily(consecutive());
 
         expect(memoized()).toEqual(0);
         flush();
@@ -75,7 +75,7 @@ describe('mem', () => {
 
     it('works with promises', async () => {
         const next = consecutive();
-        const memoized = mem(() => Promise.resolve(next()));
+        const memoized = memily(() => Promise.resolve(next()));
 
         expect(await memoized()).toEqual(0);
         expect(await memoized()).toEqual(0);

@@ -12,7 +12,7 @@ type StoreCache = Map<Function, Store>;
 // Global store of all the memoization caches, so that they can all be flushed at once without re-initing all the memoized functions.
 const storeCache: StoreCache = new Map();
 
-export default function mem<Fn: Function>(
+export default function memily<Fn: Function>(
     fn: Fn,
     { cacheKey, maxAge }: Options = {},
 ): Fn {
