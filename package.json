@@ -13,6 +13,7 @@
     "@babel/preset-flow": "^7.0.0-beta.37"
   },
   "scripts": {
-  	"build": "babel src/memily.js --out-dir dist"
+    "build": "babel src/memily.js --out-dir dist",
+    "prepublish": "yarn build"
   }
 }
