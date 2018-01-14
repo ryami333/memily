@@ -3,12 +3,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = mem;
+exports.default = memily;
 exports.flush = flush;
 // Global store of all the memoization caches, so that they can all be flushed at once without re-initing all the memoized functions.
 var storeCache = new Map();
 
-function mem(fn) {
+function memily(fn) {
   var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
       cacheKey = _ref.cacheKey,
       maxAge = _ref.maxAge;

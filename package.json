@@ -14,11 +14,12 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^22.0.6",
     "consecutive": "^5.0.4",
+    "flow-bin": "^0.63.1",
     "jest": "^22.0.6"
   },
   "scripts": {
     "test": "jest",
     "build": "babel src/memily.js --out-dir dist",
-    "prepublish": "yarn test && yarn build"
+    "prepublish": "yarn flow && yarn test && yarn build"
   }
 }
