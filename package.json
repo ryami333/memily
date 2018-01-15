@@ -19,7 +19,8 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "babel src/memily.js --out-dir dist",
-    "prepublish": "yarn flow && yarn test && yarn build"
+    "build:umd": "babel src/memily.js --out-dir dist",
+    "build:flow": "yarn --silent flow gen-flow-files src/memily.js > dist/memily.flow.js",
+    "prepublish": "yarn flow && yarn test && yarn build:umd && yarn build:flow"
   }
 }
