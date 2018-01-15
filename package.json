@@ -21,6 +21,6 @@
     "test": "jest",
     "build:umd": "babel src/memily.js --out-dir dist",
     "build:flow": "yarn --silent flow gen-flow-files src/memily.js > dist/memily.flow.js",
-    "prepublishOnly": "yarn flow && yarn test && yarn build:umd && yarn build:flow && git stage dist/*"
+    "build": "yarn build:umd && yarn build:flow"
   }
 }
