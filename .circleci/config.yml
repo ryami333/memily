@@ -1,18 +1,40 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
+  install-job:
+    docker:
+      - image: circleci/node:9
+    working_directory: ~/repo
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - node_modules/*
+
+
   deploy-job:
     docker:
       - image: circleci/node:9
     working_directory: ~/repo
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/repo
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-      - run: yarn install
-      - run: yarn build
       - run: npm publish
     filters:
       tags:
@@ -65,29 +87,25 @@ jobs:
 
     steps:
       - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-      - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-      
+      - attach_workspace:
+        at: ~/repo
       - run: yarn build
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - dist/*
 
 workflows:
   version: 2
   build-deploy:
     jobs:
-      - build-job
-      - test-job
+      - install-job
+      - build-job:
+          requires:
+            - install-job
+      - test-job:
+          requires:
+            - install-job
       - deploy-job:
           requires:
             - test-job
