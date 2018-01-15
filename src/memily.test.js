@@ -65,6 +65,12 @@ describe('memily', () => {
         expect(() => memoized('foo', 'bar')).toThrow();
     });
 
+    it('throws an error when cacheKey returns anything but a string|number', async () => {
+        // $FlowFixMe
+        const memoized = memily(jest.fn(), { cacheKey: () => ({ foo: 'bar' }) });
+        expect(() => memoized()).toThrow();
+    });
+
     it('flushes the cache when "flush" invoked', async () => {
         const memoized = memily(consecutive());
 

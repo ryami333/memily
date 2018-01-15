@@ -1,7 +1,7 @@
 // @flow
 
 type Options<Args> = {|
-    cacheKey?: (...Args) => string | number,
+    cacheKey?: (...Args) => (string | number),
     maxAge?: number,
 |};
 
@@ -14,11 +14,14 @@ const storeCache: StoreCache = new Map();
 
 export default function mem<FnArgs: Array<*>, FnReturn>(
     fn: (...args: FnArgs) => FnReturn,
-    { cacheKey, maxAge }: Options<FnArgs> = {},
+    options?: Options<FnArgs>,
 ): (...FnArgs) => FnReturn {
     if (!storeCache.has(fn)) {
         storeCache.set(fn, new Map());
     }
+
+    const cacheKey = options && options.cacheKey;
+    const maxAge = options && options.maxAge;
 
     function memoizedFn(...args: FnArgs): FnReturn {
         if (args && args.length > 1) {
@@ -26,9 +29,9 @@ export default function mem<FnArgs: Array<*>, FnReturn>(
         }
         const store = storeCache.get(fn);
 
-        const key = cacheKey ? cacheKey(...args) : args[0];
+        const key = cacheKey ? cacheKey(...args) : arguments[0];
 
-        if (typeof key !== 'string' && typeof key !== 'number') {
+        if (typeof key !== 'string' && typeof key !== 'number' && typeof key !== 'undefined') {
             throw new Error('cacheKey must return a string or integer');
         }
 
