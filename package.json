@@ -2,7 +2,7 @@
   "name": "memily",
   "version": "1.1.0",
   "description": "Javascript function memoization library.",
-  "main": "dist/main.js",
+  "main": "dist/memily.js",
   "repository": "git@github.com:ryami333/memily.git",
   "author": "Mitch Ryan <mitch.ryan@outlook.co.nz>",
   "license": "UNLICENSED",
