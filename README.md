@@ -24,3 +24,28 @@ Then, import memily into your project like this:
 import memily from 'memily';
 ```
 
+### Examples
+
+#### Basic Usage
+
+```jsx
+import memily from 'memily';
+
+function squareRoot(num) {
+	console.log('Hello world!');
+	return Math.sqrt(num);
+}
+
+const squareRootMemoized(squareRoot);
+
+squareRootMemoized(4); // console.log: 'Hello world!'
+squareRootMemoized(4); // ...
+squareRootMemoized(4); // ...
+squareRootMemoized(9); // console.log: 'Hello world!'
+```
+
+#### Flushing the memoization cache
+
+```jsx
+import { flush } from 'memily';
+```
