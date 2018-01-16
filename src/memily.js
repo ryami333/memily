@@ -1,7 +1,7 @@
 // @flow
 
 type Options<Args> = {|
-    cacheKey?: (...Args) => (string | number),
+    cacheKey?: (...Args) => string | number,
     maxAge?: number,
 |};
 
@@ -31,7 +31,11 @@ export default function mem<FnArgs: Array<*>, FnReturn>(
 
         const key = cacheKey ? cacheKey(...args) : arguments[0];
 
-        if (typeof key !== 'string' && typeof key !== 'number' && typeof key !== 'undefined') {
+        if (
+            typeof key !== 'string' &&
+            typeof key !== 'number' &&
+            typeof key !== 'undefined'
+        ) {
             throw new Error('cacheKey must return a string or integer');
         }
 

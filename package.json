@@ -15,12 +15,14 @@
     "babel-jest": "^22.0.6",
     "consecutive": "^5.0.4",
     "flow-bin": "^0.63.1",
+    "flow-copy-source": "^1.2.1",
     "jest": "^22.0.6"
   },
   "scripts": {
     "test": "jest",
     "build:umd": "babel src/memily.js --out-dir dist",
-    "build:flow": "yarn --silent flow gen-flow-files src/memily.js > dist/memily.flow.js",
-    "build": "yarn build:umd && yarn build:flow"
+    "build:flow": "flow-copy-source src dist --ignore *.test.js",
+    "build": "yarn build:umd && yarn build:flow",
+    "prebuild": "rm -rf dist"
   }
 }
