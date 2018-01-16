@@ -61,7 +61,7 @@ Promise.resolve()
 	.then(() => squareRootMemoized(4)) // console.log: 'Hello world!'
 ```
 
-#### Caching against a custom key.
+#### Caching against a custom key using the `cacheKey` option.
 
 ```jsx
 import memily from 'memily';
