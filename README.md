@@ -1,4 +1,4 @@
-# Project Title
+# Memily
 
 Javascript function [https://en.wikipedia.org/wiki/Memoization](memoization) library.
 
