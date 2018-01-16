@@ -70,13 +70,22 @@ workflows:
   version: 2
   build-deploy:
     jobs:
-      - install-job
+      - install-job:
+          filters:
+            tags:
+              only: /.*/
       - build-job:
           requires:
             - install-job
+          filters:
+            tags:
+              only: /.*/
       - test-job:
           requires:
             - install-job
+          filters:
+            tags:
+              only: /.*/
       - deploy-job:
           requires:
             - test-job
