@@ -36,9 +36,6 @@ jobs:
           at: ~/repo
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - run: npm publish
-    filters:
-      tags:
-        only: /v[0-9]+(\.[0-9]+)*/
 
   test-job:
     docker:
@@ -85,6 +82,6 @@ workflows:
             - test-job
             - build-job
           filters:
-            branches:
-              only: master
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
             
