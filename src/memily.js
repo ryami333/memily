@@ -29,6 +29,7 @@ export default function mem<FnArgs: Array<*>, FnReturn>(
         }
         const store = storeCache.get(fn);
 
+        // eslint-disable-next-line prefer-rest-params
         const key = cacheKey ? cacheKey(...args) : arguments[0];
 
         if (
