@@ -14,7 +14,7 @@ npm install --save memily
 
 Or if you use Yarn:
 
-```
+```bash
 yarn add memily
 ```
 
