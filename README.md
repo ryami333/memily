@@ -1,6 +1,6 @@
 # Memily
 
-Javascript [https://en.wikipedia.org/wiki/Memoization](memoization) library. Wrap your computationally expensive functions with `memily` so that the results of calls are cached.
+Javascript [memoization](https://en.wikipedia.org/wiki/Memoization) library. Wrap your computationally expensive functions with `memily` so that the results of calls are cached.
 
 ### Installing
 
