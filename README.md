@@ -1,8 +1,8 @@
 # Memily
 
-Javascript function [https://en.wikipedia.org/wiki/Memoization](memoization) library.
+Javascript [https://en.wikipedia.org/wiki/Memoization](memoization) library. Wrap your computationally expensive functions with `memily` so that the results of calls are cached.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Memily comes with Flow types built in. No `flow-typed` installation required.
 
 ### Installing
 
