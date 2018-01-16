@@ -60,11 +60,6 @@ describe('memily', () => {
         expect(memoized({ cacheByThis: 'bar', notThis: 'qux' })).toEqual(1);
     });
 
-    it('throws an error when you try to invoke a memoized function with mulitple arguments', async () => {
-        const memoized = memily(jest.fn());
-        expect(() => memoized('foo', 'bar')).toThrow();
-    });
-
     it('throws an error when cacheKey returns anything but a string|number', async () => {
         // $FlowFixMe
         const memoized = memily(jest.fn(), {
@@ -91,25 +86,22 @@ describe('memily', () => {
 
     it('preserves flow type of source function', () => {
         {
-            function add(arg1: number, arg2: number) {
-                return arg1 + arg2;
-            }
-            const memoizedAdd = memily(add);
+            const add = (arg1: number, arg2: number) => arg1 + arg2;
+            const memoizedAdd = memily(add, { cacheKey: () => 'KEY' });
 
-            add(1, 2);
+            memoizedAdd(1, 2);
             // $FlowFixMe
-            add('a', 2);
+            memoizedAdd('a', 2);
         }
 
         {
-            function add({ arg1, arg2 }: { arg1: number, arg2: number }) {
-                return arg1 + arg2;
-            }
-            const memoizedAdd = memily(add);
+            const add = ({ arg1, arg2 }: { arg1: number, arg2: number }) =>
+                arg1 + arg2;
+            const memoizedAdd = memily(add, { cacheKey: () => 'KEY' });
 
-            add({ arg1: 1, arg2: 2 });
+            memoizedAdd({ arg1: 1, arg2: 2 });
             // $FlowFixMe
-            add({ arg1: 'a', arg2: 2 });
+            memoizedAdd({ arg1: 'a', arg2: 2 });
         }
     });
 });
