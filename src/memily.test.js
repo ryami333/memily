@@ -91,9 +91,7 @@ describe('memily', () => {
 
     it('preserves flow type of source function', () => {
         {
-            const add = (arg1: number, arg2: number) => {
-                return arg1 + arg2;
-            };
+            const add = (arg1: number, arg2: number) => arg1 + arg2;
             const memoizedAdd = memily(add);
 
             memoizedAdd(1, 2);
@@ -102,9 +100,8 @@ describe('memily', () => {
         }
 
         {
-            const add = ({ arg1, arg2 }: { arg1: number, arg2: number }) => {
-                return arg1 + arg2;
-            };
+            const add = ({ arg1, arg2 }: { arg1: number, arg2: number }) =>
+                arg1 + arg2;
             const memoizedAdd = memily(add);
 
             memoizedAdd({ arg1: 1, arg2: 2 });
