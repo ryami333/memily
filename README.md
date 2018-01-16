@@ -44,6 +44,25 @@ squareRootMemoized(4); // ...
 squareRootMemoized(9); // console.log: 'Hello world!'
 ```
 
+#### Caching for a finite time using `maxAge` option.
+
+```jsx
+import memily from 'memily';
+
+function squareRoot(num) {
+	console.log('Hello world!');
+	return Math.sqrt(num);
+}
+
+const squareRootMemoized(squareRoot, { maxAge: 100 });
+
+Promise.resolve()
+	.then(() => squareRootMemoized(4)) // console.log: 'Hello world!'
+	.then(() => squareRootMemoized(4)) // ...
+	.then(() => new Promise(resolve => setTimeout(resolve, 200)))
+	.then(() => squareRootMemoized(4)) // console.log: 'Hello world!'
+```
+
 #### Flushing the memoization cache
 
 ```jsx
