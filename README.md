@@ -63,6 +63,36 @@ Promise.resolve()
 	.then(() => squareRootMemoized(4)) // console.log: 'Hello world!'
 ```
 
+#### Caching against a custom key.
+
+```jsx
+import memily from 'memily';
+
+const steveHolt = {
+	id: 1,
+	firstName: 'Steve',
+	surname: 'Holt',
+};
+
+const tobiasFunke = {
+	id: 2,
+	firstName: 'Tobias',
+	surname: 'Funke',
+};
+
+function getFullNameString(user) {
+	console.log('Hello world!');
+	return `${user.firstName} ${user.surname}`;
+}
+
+const squareRootMemoized(squareRoot, { cacheKey: user => user.id });
+
+getFullNameString(steveHolt);   // console.log: 'Hello world!'
+getFullNameString(steveHolt);   // ...
+getFullNameString(tobiasFunke); // console.log: 'Hello world!'
+getFullNameString(tobiasFunke); // ...
+```
+
 #### Flushing the memoization cache
 
 ```jsx
