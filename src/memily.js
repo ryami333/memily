@@ -24,9 +24,6 @@ export default function mem<FnArgs: Array<*>, FnReturn>(
     const maxAge = options && options.maxAge;
 
     function memoizedFn(...args: FnArgs): FnReturn {
-        if (args && args.length > 1) {
-            throw new Error('Cannot memoize functions with multiple arguments');
-        }
         const store = storeCache.get(fn);
 
         // eslint-disable-next-line prefer-rest-params
