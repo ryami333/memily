@@ -2,8 +2,6 @@
 
 Javascript [https://en.wikipedia.org/wiki/Memoization](memoization) library. Wrap your computationally expensive functions with `memily` so that the results of calls are cached.
 
-Memily comes with Flow types built in. No `flow-typed` installation required.
-
 ### Installing
 
 Install `memily` to your project by running:
@@ -98,6 +96,10 @@ getFullNameString(tobiasFunke); // ...
 ```jsx
 import { flush } from 'memily';
 ```
+
+### Flow Types
+
+Memily comes with Flow types built in. No `flow-typed` installation required.
 
 ### License
 
