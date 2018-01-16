@@ -51,7 +51,7 @@ jobs:
       - attach_workspace:
           at: ~/repo
       - run: yarn test
-      - run: yarn flow
+      - run: yarn lint
 
   build-job:
     docker:
