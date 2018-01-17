@@ -2,8 +2,6 @@
 
 Javascript [memoization](https://en.wikipedia.org/wiki/Memoization) library. Wrap your computationally expensive functions with `memily` so that the results of calls are cached.
 
-Inspired heavily by [sindresorhus](https://github.com/sindresorhus)'s [mem](https://github.com/sindresorhus/mem) package.
-
 ### Installing
 
 Install `memily` to your project by running:
@@ -108,3 +106,7 @@ Memily comes with Flow types built in. No `flow-typed` installation required.
 ### License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+### Acknowledgements
+
+Memily was heavily inspired and influenced by [sindresorhus](https://github.com/sindresorhus)'s [mem](https://github.com/sindresorhus/mem) package.
