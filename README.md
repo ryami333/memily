@@ -95,6 +95,8 @@ getFullNameString(tobiasFunke); // ...
 
 ```jsx
 import { flush } from 'memily';
+
+flush();
 ```
 
 ### Flow Types
