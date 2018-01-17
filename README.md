@@ -4,7 +4,7 @@ Javascript [memoization](https://en.wikipedia.org/wiki/Memoization) library. Wra
 
 ### Browser Compatibility
 
-This package is dependendent on the ES6 [Map](`https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map`) feature, which is available in most modern browsers. Consider using a polyfill such as [`core-js`](https://github.com/zloirock/core-js) for legacy browser support.
+This package is dependendent on the ES6 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) feature, which is available in most modern browsers. Consider using a polyfill such as [`core-js`](https://github.com/zloirock/core-js) for legacy browser support.
 
 ### Installation
 
