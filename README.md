@@ -27,8 +27,6 @@ import memily from 'memily';
 #### Basic Usage
 
 ```jsx
-import memily from 'memily';
-
 function squareRoot(num) {
 	console.log('Hello world!');
 	return Math.sqrt(num);
@@ -45,8 +43,6 @@ squareRootMemoized(9); // console.log: 'Hello world!'
 #### Caching for a finite time using `maxAge` option.
 
 ```jsx
-import memily from 'memily';
-
 function squareRoot(num) {
 	console.log('Hello world!');
 	return Math.sqrt(num);
@@ -64,8 +60,6 @@ Promise.resolve()
 #### Caching against a custom key using the `cacheKey` option.
 
 ```jsx
-import memily from 'memily';
-
 const steveHolt = {
 	id: 1,
 	firstName: 'Steve',
