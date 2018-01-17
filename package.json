@@ -7,6 +7,7 @@
   "author": "Mitch Ryan <mitch@mitch-ryan.com>",
   "license": "MIT",
   "keywords": ["memoization", "mem", "cache", "flow"],
+  "files": ["dist/"],
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.37",
     "@babel/core": "^7.0.0-beta.37",
