@@ -28,8 +28,8 @@ import memily from 'memily';
 
 ```jsx
 function squareRoot(num) {
-	console.log('Hello world!');
-	return Math.sqrt(num);
+    console.log('Hello world!');
+    return Math.sqrt(num);
 }
 
 const squareRootMemoized(squareRoot);
@@ -44,37 +44,37 @@ squareRootMemoized(9); // console.log: 'Hello world!'
 
 ```jsx
 function squareRoot(num) {
-	console.log('Hello world!');
-	return Math.sqrt(num);
+    console.log('Hello world!');
+    return Math.sqrt(num);
 }
 
 const squareRootMemoized(squareRoot, { maxAge: 100 });
 
 Promise.resolve()
-	.then(() => squareRootMemoized(4)) // console.log: 'Hello world!'
-	.then(() => squareRootMemoized(4)) // ...
-	.then(() => new Promise(resolve => setTimeout(resolve, 200)))
-	.then(() => squareRootMemoized(4)) // console.log: 'Hello world!'
+    .then(() => squareRootMemoized(4)) // console.log: 'Hello world!'
+    .then(() => squareRootMemoized(4)) // ...
+    .then(() => new Promise(resolve => setTimeout(resolve, 200)))
+    .then(() => squareRootMemoized(4)) // console.log: 'Hello world!'
 ```
 
 #### Caching against a custom key using the `cacheKey` option.
 
 ```jsx
 const steveHolt = {
-	id: 1,
-	firstName: 'Steve',
-	surname: 'Holt',
+    id: 1,
+    firstName: 'Steve',
+    surname: 'Holt',
 };
 
 const tobiasFunke = {
-	id: 2,
-	firstName: 'Tobias',
-	surname: 'Funke',
+    id: 2,
+    firstName: 'Tobias',
+    surname: 'Funke',
 };
 
 function getFullNameString(user) {
-	console.log('Hello world!');
-	return `${user.firstName} ${user.surname}`;
+    console.log('Hello world!');
+    return `${user.firstName} ${user.surname}`;
 }
 
 const squareRootMemoized(squareRoot, { cacheKey: user => user.id });
