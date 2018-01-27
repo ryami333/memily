@@ -1,4 +1,4 @@
-# Memily
+# Memily [![CircleCI](https://img.shields.io/circleci/project/github/ryami333/memily.svg)]() [![npm](https://img.shields.io/npm/v/memily.svg)]()
 
 Javascript [memoization](https://en.wikipedia.org/wiki/Memoization) library. Wrap your computationally expensive functions with `memily` so that the results of calls are cached.
 
