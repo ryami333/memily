@@ -31,12 +31,14 @@ import memily from 'memily';
 #### Basic Usage
 
 ```jsx
+import memily from 'memily';
+
 function squareRoot(num) {
     console.log('Hello world!');
     return Math.sqrt(num);
 }
 
-const squareRootMemoized(squareRoot);
+const squareRootMemoized = memily(squareRoot);
 
 squareRootMemoized(4); // console.log: 'Hello world!'
 squareRootMemoized(4); // ...
@@ -52,13 +54,13 @@ function squareRoot(num) {
     return Math.sqrt(num);
 }
 
-const squareRootMemoized(squareRoot, { maxAge: 100 });
+const squareRootMemoized = memily(squareRoot, { maxAge: 100 });
 
 Promise.resolve()
     .then(() => squareRootMemoized(4)) // console.log: 'Hello world!'
     .then(() => squareRootMemoized(4)) // ...
     .then(() => new Promise(resolve => setTimeout(resolve, 200)))
-    .then(() => squareRootMemoized(4)) // console.log: 'Hello world!'
+    .then(() => squareRootMemoized(4)); // console.log: 'Hello world!'
 ```
 
 #### Caching against a custom key using the `cacheKey` option.
@@ -81,12 +83,14 @@ function getFullNameString(user) {
     return `${user.firstName} ${user.surname}`;
 }
 
-const squareRootMemoized(squareRoot, { cacheKey: user => user.id });
+const getFullNameStringMemoized = memily(getFullNameString, {
+    cacheKey: user => user.id,
+});
 
-getFullNameString(steveHolt);   // console.log: 'Hello world!'
-getFullNameString(steveHolt);   // ...
-getFullNameString(tobiasFunke); // console.log: 'Hello world!'
-getFullNameString(tobiasFunke); // ...
+getFullNameStringMemoized(steveHolt); // console.log: 'Hello world!'
+getFullNameStringMemoized(steveHolt); // ...
+getFullNameStringMemoized(tobiasFunke); // console.log: 'Hello world!'
+getFullNameStringMemoized(tobiasFunke); // ...
 ```
 
 #### Flushing the memoization cache
